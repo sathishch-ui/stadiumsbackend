@@ -1,7 +1,17 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  return NextResponse.json({
+
+
+
+
+export async function GET(req) {
+  const headers = new Headers();
+  headers.set("Access-Control-Allow-Origin", "https://sportsdashboard-project.vercel.app");
+  headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  // Example response
+  return new Response(JSON.stringify({
     "status": "success",
     "code": 200,
     "message": "",
@@ -145,5 +155,25 @@ export async function GET() {
         "totalRecord": 6,
         "totalPages": 1
     }
-});
+}), {
+    status: 200,
+    headers,
+  });
 }
+
+// Handle OPTIONS request (important for CORS preflight)
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "https://sportsdashboard-project.vercel.app",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}
+
+
+// export async function GET() {
+//   return NextResponse.json({ message: "Sports API working fine!" });
+// }
