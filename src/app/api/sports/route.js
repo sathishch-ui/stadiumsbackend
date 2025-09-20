@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req) {
   const headers = new Headers();
-  headers.set("Access-Control-Allow-Origin", "https://sportsdashboard-project.vercel.app");
+  headers.set("Access-Control-Allow-Origin", "*");
   headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
